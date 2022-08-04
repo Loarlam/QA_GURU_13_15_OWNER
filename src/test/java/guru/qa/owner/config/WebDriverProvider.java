@@ -7,18 +7,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.function.Supplier;
 
+import static org.openqa.selenium.remote.BrowserType.CHROME;
+import static org.openqa.selenium.remote.BrowserType.FIREFOX;
+
+
 public class WebDriverProvider implements Supplier<WebDriver> {
 
     private final WebDriverConfig config;
 
     public WebDriverProvider() {
-        this.config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+        config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
     }
 
     @Override
     public WebDriver get() {
         WebDriver driver = createDriver();
-        driver.get(config.getBaseUrl());
+        driver.get(config.getBrowserUrl());
         return driver;
     }
 
