@@ -6,10 +6,13 @@ package guru.qa.owner.config;
 
 import org.aeonbits.owner.Config;
 
+import java.net.URL;
+
 @Config.Sources({"classpath:${launch}.properties"})
 public interface WebDriverConfig extends Config {
 
     @Key("browserName")
+    @DefaultValue("chrome")
     Browser getBrowser();
 
     @Key("browserVersion")
@@ -19,9 +22,10 @@ public interface WebDriverConfig extends Config {
     @DefaultValue("https://qa.guru/")
     String getBrowserUrl();
 
-    @DefaultValue("1920x1080")
-    String getBrowserResolution();
+    @Key("browserRemoteUrl")
+    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub/")
+    URL getBrowserRemoteUrl();
 
-    @DefaultValue("0x0")
-    String getBrowserPosition();
+    @Key("browserIsRemote")
+    Boolean getBrowserRemoteValue();
 }
